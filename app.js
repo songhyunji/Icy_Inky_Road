@@ -93,15 +93,15 @@ app.post('/updateEditorStage/update' , function(req,res)
 	var editorMap = req.body.editorMap;//update
 
 	var nickname = userInfo.nickname;
-	var stage_num = userStage.stage_num;
+	var stage_name = userStage.stage_name;
 	var map_id = editorMap.map_id;
 	
 
 	var sql = 'update UserInfo set ? where nickname =?;'
 	+'update UserHistory set ? where nickname =?;'
-	+'update UserStage set ? where nickname = ? and stage_num = ?;'
+	+'update UserStage set ? where nickname = ? and stage_name = ?;'
 	+'update EditorMap set ? where map_id = ?';
-	connection.query(sql,[userInfo,nickname,userHistory,nickname,userStage,nickname,stage_num,editorMap,map_id],function(error, results, fields)
+	connection.query(sql,[userInfo,nickname,userHistory,nickname,userStage,nickname,stage_name,editorMap,map_id],function(error, results, fields)
 	{	
 		if(error){
 			console.log(error);
@@ -153,12 +153,12 @@ app.post('/updateStage/update' , function(req,res)
 	var userStage = req.body.userStage;//update
 
 	var nickname = userInfo.nickname;
-	var stage_num = userStage.stage_num;
+	var stage_name = userStage.stage_name;
 
 	var sql = 'update UserInfo set ? where nickname =?;'
 	+'update UserHistory set ? where nickname = ?;'
-	+'update UserStage set ? where nickname = ? and stage_num = ?'
-	connection.query(sql,[userInfo,nickname,userHistory,nickname,userStage,nickname,stage_num],function(error, results, fields)
+	+'update UserStage set ? where nickname = ? and stage_name = ?'
+	connection.query(sql,[userInfo,nickname,userHistory,nickname,userStage,nickname,stage_name],function(error, results, fields)
 	{	
 		if(error){
 			console.log(error);
@@ -201,10 +201,10 @@ app.post('/userStage/update' , function(req,res)
 {
     var userStage = req.body;
 	var nickname = userStage.nickname;
-	var stage_num = userStage.stage_num;
+	var stage_name = userStage.stage_name;
 
-	var sql = 'update UserStage SET ? where nickname = ? and stage_num = ?';
-	connection.query(sql,[userStage,nickname,stage_num],function(error, results, fields)
+	var sql = 'update UserStage SET ? where nickname = ? and stage_name = ?';
+	connection.query(sql,[userStage,nickname,stage_name],function(error, results, fields)
 	{	
 		if(error){
 			console.log(error);
