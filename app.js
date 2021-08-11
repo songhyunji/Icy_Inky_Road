@@ -275,7 +275,7 @@ app.post('/clearQuest/update' , function(req,res)
 
 	var sql = 'update UserInfo set ? where nickname =?;'
 	+'update UserHistory set ? where nickname = ?;'
-	+'update userQuest set ? where nickname = ? and quest_number = ?'
+	+'update UserQuest set ? where nickname = ? and quest_number = ?'
 	connection.query(sql,[userInfo,nickname,userHistory,nickname,userQuest,nickname,quest_number],function(error, results, fields)
 	{	
 		if(error){
