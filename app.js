@@ -415,9 +415,58 @@ app.post('/getmailbox/update' , function(req,res)
 				
 	});
 })
+
+
+app.post('/userQuest/update' , function(req,res)
+{
+	var userQuest = req.body;
+	
+	var nickname = userQuest.nickname;
+	var quest_number = userQuest.quest_number;
+
+
+	var sql = 'update UserQuest set ? where nickname = ? and quest_number = ?';
+
+	connection.query(sql,[userQuest,nickname,quest_number],function(error, results, fields)
+	{	
+		if(error){
+			console.log(error);
+			res.status(400).send(error);
+		}
+		else{
+			console.log(results);
+			res.status(200).send(JSON.stringify(results));
+		}
+				
+	});
+
+	
+})
 //#endregion
 
 //#region INSERT
+
+app.post('/userQuest/insert' , function(req,res)
+{
+	var newQuest = req.body;
+
+	var sql = 'insert into UserQuest SET ?';
+
+	connection.query(sql,newQuest,function(error, results, fields)
+	{	
+		if(error){
+			console.log(error);
+			res.status(400).send(error);
+		}
+		else{
+			console.log(results);
+			res.status(200).send(JSON.stringify(results));
+		}
+				
+	});
+
+	
+})
 
 app.post('/userInfo/insert' , function(req,res)
 {
@@ -844,9 +893,10 @@ app.get('/getall/get' , function(req,res){
     +'select * from UserInventory where nickname = ?;'
     +'select * from UserFriend where nickname_mine = ?;'
     +'select * from UserReward where nickname = ?;'
-    +'select * from Mailbox where receiver = ?';
+    +'select * from Mailbox where receiver = ?;'
+	+'select * from UserQuest where nickname = ?';
 
-	connection.query(sql,[nickname,nickname,nickname,nickname,nickname,nickname,nickname],function(error, results, fields)
+	connection.query(sql,[nickname,nickname,nickname,nickname,nickname,nickname,nickname,nickname],function(error, results, fields)
 	{	
 		if(error)
         {
