@@ -263,6 +263,34 @@ app.post('/userHistory/update' , function(req,res)
 	});
 })
 
+
+app.post('/clearQuest/update' , function(req,res)
+{
+    var userHistory = req.body.userHistory;
+	var userInfo = req.body.userInfo;
+	var userQuest = req.body.userQuest;
+
+	var nickname = userInfo.nickname;
+	var quest_number = userQuest.quest_number;
+
+	var sql = 'update UserInfo set ? where nickname =?;'
+	+'update UserHistory set ? where nickname = ?;'
+	+'update userQuest set ? where nickname = ? and quest_number = ?'
+	connection.query(sql,[userInfo,nickname,userHistory,nickname,userQuest,nickname,quest_number],function(error, results, fields)
+	{	
+		if(error){
+			console.log(error);
+			res.status(400).send(error);
+		}
+		else{
+			console.log(results);
+
+			res.status(200).send(JSON.stringify(results));
+		}
+				
+	});
+})
+
 app.post('/userInventory/update' , function(req,res)
 {
     var userInventory = req.body;
