@@ -573,9 +573,7 @@ app.post('/userReward/insert' , function(req,res)
     +'update UserHistory set ? where nickname = ?;'
 	+'insert into UserReward SET ?;';
 
-	console.log("info :" + userInfo.nickname);
-	console.log("inven :" +userInventory.nickname);
-	console.log("inven :" +userInventory.item_name);
+	
 	if(userInventory.item_name != "none")
 	{
 		console.log("item update");
@@ -602,7 +600,6 @@ app.post('/userReward/insert' , function(req,res)
 		console.log("no item update");
 		connection.query(sql,[userInfo,nickname,userHistory,nickname,userReward],function(error, results, fields)
 		{	
-			console.log(sql);
 			if(error)
 			{
 				console.log(error);
