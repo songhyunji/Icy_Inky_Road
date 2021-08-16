@@ -592,7 +592,6 @@ app.post('/userReward/insert' , function(req,res)
 			}
 			else
 			{
-				console.log("friend data : " + results);
 				res.status(200).send(JSON.stringify(results));		
 			}
 			
@@ -611,44 +610,11 @@ app.post('/userReward/insert' , function(req,res)
 			}
 			else
 			{
-				console.log("friend data : " + results);
 				res.status(200).send(JSON.stringify(results));		
 			}
 			
 		});
 	}
-
-	connection.query(sql,[userInfo,userHistory],function(error, results, fields)
-	{	
-		if(error)
-        {
-            console.log(error);
-            res.status(400).send(error);
-        }
-        else
-        {
-            console.log("friend data : " + results);
-		    res.status(200).send(JSON.stringify(results));		
-        }
-		
-	});
-
-	var newReward = req.body;
-
-	var sql = 'insert into UserReward SET ?';
-
-	connection.query(sql,newReward,function(error, results, fields)
-	{	
-		if(error){
-			console.log(error);
-			res.status(400).send(error);
-		}
-		else{
-			console.log(results);
-			res.status(200).send(JSON.stringify(results));
-		}
-				
-	});
 
 	
 })
