@@ -363,7 +363,7 @@ app.post('/editorMap/like/update' , function(req,res)
 	});
 })
 
-app.post('/skinBuy/update' , function(req,res)
+app.post('/buyItem/update' , function(req,res)
 {
 	var userInfo = req.body.userInfo;//update
 	var userHistory = req.body.userHistory;//update
@@ -392,7 +392,7 @@ app.post('/skinBuy/update' , function(req,res)
 	});
 })
 
-app.post('/sendmailbox/update' , function(req,res)
+app.post('/sendmailbox/insert' , function(req,res)
 {
     var mailbox = req.body.mailbox;
 	var friend = req.body.myFriend;
@@ -540,6 +540,7 @@ app.post('/userHistory/insert' , function(req,res)
 
 app.post('/userFriend/insert' , function(req,res)
 {
+	
 	var myRequest = req.body.myRequest;
 	var friendRequest = req.body.friendRequest;
 	var sql = 'insert into UserFriend SET ?;'
@@ -568,6 +569,7 @@ app.post('/userReward/insert' , function(req,res)
 	var userInventory = req.body.inventory;
 	var userReward = req.body.reward;
 	var nickname = userInfo.nickname;
+
 	var sql 
     ='update UserInfo set ? where nickname = ?;'
     +'update UserHistory set ? where nickname = ?;'
@@ -938,8 +940,12 @@ app.post('/newUser/create' , function(req,res){
 
 app.post('/userFriend/delete',function(req,res){
 
-	var id = req.body.nickname_mine;
-	var friend_id = req.body.nickname_friend;
+
+	var myRequest = req.body.myRequest;
+	var friendRequest = req.body.friendRequest;
+
+	var id = myRequest.nickname_mine;
+	var friend_id = friendRequest.nickname_mine;
 
 	
 	//delete
